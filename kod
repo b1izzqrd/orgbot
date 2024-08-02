@@ -1,0 +1,41 @@
+import discord
+import requests
+import os
+import random
+from discord.ext import commands
+intents = discord.Intents.default()
+intents.message_content = True
+bot = commands.Bot(command_prefix='$', intents=intents)
+@bot.event
+async def on_ready():
+    print(f'{bot.user} olarak giriş yaptik')
+
+@bot.command()
+async def memes1(ctx ):
+    with open("images/mem pic1.png", "rb") as a:
+        funny = discord.file(a)
+    await ctx.send(file = funny)
+
+def get_duck_image_url():    
+    url = 'https://random-d.uk/api/rpipandom'
+    res = requests.get(url)
+    data = res.json()
+    return data['url']
+
+
+@bot.command('duck')
+async def duck(ctx):
+    image_url = get_duck_image_url()
+    await ctx.send(image_url)
+
+selamacevap = "merhaba"
+
+@bot.command('selam')
+async def selam(message):
+    if message == "selam"
+        return selamacevap
+    else:
+        return
+
+
+bot.run("5c09db5e511f200f223b35a8f14f71cf09fdb956a8be48a8826c3fa27610633c")
